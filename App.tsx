@@ -1,30 +1,19 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import { ConvexProvider, ConvexReactClient } from "convex/react";
-import { CONVEX_URL } from "@env";
-import "react-native-get-random-values";
-import Tasks from "./tasks";
+// App.js
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import HomeScreen from './HomeScreen';
 
+const Stack = createStackNavigator();
 
-const convex = new ConvexReactClient(CONVEX_URL, {
-  unsavedChangesWarning: false,
-});
-
-export default function App() {
+const App = () => {
   return (
-    <View style={styles.container}>
-      <ConvexProvider client={convex}>
-        <Tasks />
-      </ConvexProvider>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={HomeScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
