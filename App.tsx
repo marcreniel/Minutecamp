@@ -1,20 +1,12 @@
+// App.js
 import React, { useEffect, useRef, useState } from "react";
 import { Button, FlatList, Pressable, StyleSheet, Text, View, ViewToken } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-
 import { Video, ResizeMode, AVPlaybackStatus } from "expo-av";
 import VideoPost from "./components/VideoPost";
-
-function HomeScreen({ navigation }: { navigation: any }) {
-  return (
-    <View style={styles.container}>
-      <StatusBar style="auto" />
-      <Button title="Go to Feed" onPress={() => navigation.navigate("Feed")} />
-    </View>
-  );
-};
+import HomeScreen from "./HomeScreen";
 
 const dummyPosts = [
   {
@@ -99,7 +91,7 @@ const FeedScreen = () => {
 
 const Stack = createNativeStackNavigator();
 
-export default function App() {
+const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
@@ -112,7 +104,9 @@ export default function App() {
       </Stack.Navigator>
     </NavigationContainer>
   );
-}
+};
+
+export default App;
 
 const styles = StyleSheet.create({
   container: {
