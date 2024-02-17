@@ -5,11 +5,18 @@ import {
   BottomSheetModal,
   BottomSheetModalProvider,
 } from '@gorhom/bottom-sheet';
+import { useNavigation } from '@react-navigation/native';
 
-const BottomSheetComponent = ({ modalRef, snapPoints, handleSheetChanges }: { modalRef: any, snapPoints: any, handleSheetChanges: any}) => {
+const BottomSheetComponent = ({ modalRef, snapPoints, handleSheetChanges}: { modalRef: any, snapPoints: any, handleSheetChanges: any}) => {
+    const navigation = useNavigation();
+    
     const handlePress = () => {
         // Add your logic for the press here
         console.log("Pressable Pressed");
+
+        // Navigate to the Quiz screen
+        //@ts-expect-error
+        navigation.navigate("Quiz")
         
         // Close the bottom sheet
         modalRef.current?.dismiss();

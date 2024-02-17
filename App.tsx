@@ -7,6 +7,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Video, ResizeMode, AVPlaybackStatus } from "expo-av";
 import VideoPost from "./components/VideoPost";
 import HomeScreen from "./HomeScreen";
+import QuizScreen from "./Quiz";
 
 const dummyPosts = [
   {
@@ -101,6 +102,7 @@ const App = () => {
           component={FeedScreen}
           options={{ headerShown: false }}
         />
+        <Stack.Screen name="Quiz" component={QuizScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

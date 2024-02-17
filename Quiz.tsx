@@ -1,8 +1,10 @@
 // SimpleScreen.js
 import React from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-const SimpleScreen = ({ navigation }) => {
+const QuizScreen = ({ navigation }: { navigation: any }) => {
   const handleButtonPress = () => {
     // Add your logic for the button press here
     console.log("Button Pressed");
@@ -53,4 +55,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SimpleScreen;
+export default QuizScreen;
