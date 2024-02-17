@@ -37,6 +37,7 @@ function HomeScreen({ navigation }: { navigation: any }) {
       </ConvexProvider> */}
       <BottomSheetModalProvider>
         <View style={styles.container}>
+          <Button title="Go to Feed" onPress={() => navigation.navigate("Feed")} />
           <Button
             onPress={handlePresentModalPress}
             title="Present Modal"

@@ -6,7 +6,7 @@ import {
   BottomSheetModalProvider,
 } from '@gorhom/bottom-sheet';
 
-const BottomSheetComponent = ({ modalRef, snapPoints, handleSheetChanges, navigation }: { modalRef: any, snapPoints: any, handleSheetChanges: any, navigation: any }) => {
+const BottomSheetComponent = ({ modalRef, snapPoints, handleSheetChanges }: { modalRef: any, snapPoints: any, handleSheetChanges: any}) => {
     const handlePress = () => {
         // Add your logic for the press here
         console.log("Pressable Pressed");
@@ -14,8 +14,6 @@ const BottomSheetComponent = ({ modalRef, snapPoints, handleSheetChanges, naviga
         // Close the bottom sheet
         modalRef.current?.dismiss();
         
-        // Navigate to the Quiz screen
-        navigation.navigate('Quiz');
     };
 
     return (
