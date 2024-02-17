@@ -5,11 +5,18 @@ import {
   BottomSheetModal,
   BottomSheetModalProvider,
 } from '@gorhom/bottom-sheet';
+import { useNavigation } from '@react-navigation/native';
 
-const BottomSheetComponent = ({ modalRef, snapPoints, handleSheetChanges }: { modalRef: any, snapPoints: any, handleSheetChanges: any}) => {
+const BottomSheetComponent = ({ modalRef, snapPoints, handleSheetChanges}: { modalRef: any, snapPoints: any, handleSheetChanges: any}) => {
+    const navigation = useNavigation();
+    
     const handlePress = () => {
         // Add your logic for the press here
         console.log("Pressable Pressed");
+
+        // Navigate to the Quiz screen
+        //@ts-expect-error
+        navigation.navigate("Quiz")
         
         // Close the bottom sheet
         modalRef.current?.dismiss();
@@ -29,7 +36,7 @@ const BottomSheetComponent = ({ modalRef, snapPoints, handleSheetChanges }: { mo
                 <Pressable
                     style={({ pressed }) => [
                         styles.pressable,
-                        { backgroundColor: pressed ? '#499E49' : '#6CDE6C' }, // Darker green color when pressed, slightly lighter when not pressed
+                        { backgroundColor: pressed ? '#499E49' : '#5DB075' }, // Darker green color when pressed, slightly lighter when not pressed
                     ]}
                     onPress={handlePress}
                 >
@@ -59,7 +66,7 @@ const styles = StyleSheet.create({
   pressable: {
     padding: 10,
     borderRadius: 5,
-    backgroundColor: '#6CDE6C', // Darker green color
+    backgroundColor: '#5DB075', // Darker green color
   },
   buttonText: {
     color: '#FFFFFF', // White text color

@@ -4,7 +4,9 @@ import { View, Text, StyleSheet, Button } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import BottomSheetComponent from './components/popupSheet';
+
 // import { CONVEX_URL } from "@env";
 // import "react-native-get-random-values";
 // import Tasks from "./tasks";

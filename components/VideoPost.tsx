@@ -10,7 +10,7 @@ import {
   import { Ionicons } from '@expo/vector-icons';
   import { LinearGradient } from 'expo-linear-gradient';
   import { useEffect, useRef, useState } from 'react';
-import React from 'react';
+  import React from 'react';
   
   type VideoPost = {
     post: {
