@@ -3,6 +3,7 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { SignedIn, SignedOut, useAuth, useUser } from "@clerk/clerk-expo";
 import { log } from "../logger";
 import { RootStackScreenProps } from "../types";
+import useStoreUserEffect from "../hooks/useStoreUserEffect";
 
 export default function SafeMyProfileScreen(
   props: RootStackScreenProps<"MyProfile">
@@ -26,6 +27,7 @@ function MyProfileScreen({ navigation }: RootStackScreenProps<"MyProfile">) {
   const { user } = useUser();
 
   const [sessionToken, setSessionToken] = React.useState("");
+  const userId = useStoreUserEffect();
 
   const onSignOutPress = async () => {
     try {
@@ -49,6 +51,13 @@ function MyProfileScreen({ navigation }: RootStackScreenProps<"MyProfile">) {
     <View style={styles.container}>
       <Text style={styles.title}>Hello {user?.firstName}</Text>
       <Text style={styles.title}>Minutecamp Demo Build</Text>
+      {userId == null && (
+        <Text style={styles.title}>Storing user...</Text>
+      )}
+      {userId != null && (
+        <Text style={styles.title}>Convex ID: {userId}</Text>
+      )}
+      <Text style={styles.title}>Convex ID Demo Build</Text>
       <TouchableOpacity onPress={onSignOutPress} style={styles.link}>
         <Text style={styles.linkText}>Sign out</Text>
       </TouchableOpacity>
