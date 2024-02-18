@@ -7,6 +7,7 @@ import QuizScreen from "../screens/Quiz";
 import FeedScreen from "../components/generalFeed";
 import SignUpScreen from "../screens/SignUpScreen";
 import SignInScreen from "../screens/SignInScreen";
+import ProfileScreen from "../screens/Profile";
 import VerifyCodeScreen from "../screens/VerifyCodeScreen";
 import MyProfileScreen from "../screens/MyProfileScreen";
 import { ClerkLoaded } from "@clerk/clerk-expo";
@@ -42,6 +43,11 @@ function AppStack() {
                     <Stack.Screen 
                         name="Quiz" 
                         component={QuizScreen} 
+                        options={{ headerShown: false }}
+                    />
+                    <Stack.Screen
+                        name="Profile"
+                        component={ProfileScreen}
                         options={{ headerShown: false }}
                     />
                 </>

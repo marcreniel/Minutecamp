@@ -13,6 +13,7 @@ import {
 import { StatusBar } from "expo-status-bar";
 import DiscoverPost from "./discoverPost";
 import { AntDesign } from "@expo/vector-icons";
+import { useNavigation } from '@react-navigation/native';
 
 const dummyPosts = [
   {
@@ -50,6 +51,7 @@ const dummyPosts = [
 const categories = ["All", "Technology", "Education", "Lifestyle", "Sports"];
 
 const GeneralFeed = () => {
+  const navigation = useNavigation();
   const [activePostId, setActivePostId] = useState(dummyPosts[0].id);
   const [posts, setPosts] = useState<typeof dummyPosts>([]);
 
@@ -121,7 +123,7 @@ const GeneralFeed = () => {
       />
       <View style={styles.bottomBar}>
         <Pressable
-          onPress={() => console.log("Profile Pressed")}
+          onPress={() => navigation.navigate("Profile")}
           style={({ pressed }) => [
             {
               opacity: pressed ? 0.5 : 1,
