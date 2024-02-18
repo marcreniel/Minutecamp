@@ -36,6 +36,12 @@ function AppStack() {
                   options={{ title: "MyProfile" }}
                 />
                 <Stack.Screen
+                  name="Profile"
+                  /*@ts-ignore*/
+                  component={ProfileScreen}
+                  options={{ title: "Profile" }}
+                />
+                <Stack.Screen
                   name="Home"
                   component={HomeScreen}
                   options={{ headerShown: false }}

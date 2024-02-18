@@ -2,8 +2,15 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, Button, FlatList } from 'react-native';
 import { Ionicons } from '@expo/vector-icons'; 
 import { Feather } from '@expo/vector-icons';
+import { SignedIn, SignedOut, useAuth, useUser } from "@clerk/clerk-expo";
+import { log } from "../logger";
+import { RootStackScreenProps } from "../types";
+import useStoreUserEffect from "../hooks/useStoreUserEffect";
 
 const ProfileScreen = ({ navigation }: { navigation: any }) => {
+    // Add your logic for the sign-out button press here
+  const { getToken, signOut } = useAuth();
+  const { user } = useUser();
 
   const [inProgressCourses] = useState([
     'Course 4: React Native',
@@ -17,10 +24,14 @@ const ProfileScreen = ({ navigation }: { navigation: any }) => {
     'Course 3: Mobile App Development'
   ];
   
-  const handleButtonPress = () => {
-    // Add your logic for the sign-out button press here
+  const handleButtonPress = async () => {
     console.log("Sign Out Button Pressed");
-    // You may want to add navigation logic here to navigate to the sign-in screen
+    try {
+      await signOut();
+    } catch (err: any) {
+      log("Error:> " + err?.status || "");
+      log("Error:> " + err?.errors ? JSON.stringify(err.errors) : err);
+    }  
   };
 
   const handleEditProfilePress = () => {
@@ -136,7 +147,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 20,
   },
-  
+
   courseItem: {
     fontSize: 20,
     marginLeft: 10, 
