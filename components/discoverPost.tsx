@@ -97,7 +97,33 @@ const VideoPost = ({ post, activePostId }: VideoPost) => {
             <Text style={styles.caption}>{post.caption}</Text>
           </View>
           <Pressable
-            onPress={() => navigation.navigate("Feed")}
+            onPress={() => {
+              let destination: string | undefined = undefined; // Default destination
+              switch (post.id) {
+                case "1":
+                  destination = "Feed";
+                  break;
+                case "2":
+                  destination = "TaxesFeed";
+                  break;
+                case "3":
+                  destination = "ExcelFeed";
+                  break;
+                case "4":
+                  destination = "Excel2Feed";
+                  break;
+                case "5":
+                  destination = "PythonFeed";
+                  break;
+                default:
+                  // The default destination is already set above
+                  break;
+              }
+              // Navigate to the determined destination if it is defined
+              if (destination) {
+                navigation.navigate(destination as never);
+              }
+            }}
             style={({ pressed }) => [
               {
                 backgroundColor: pressed ? "#fff" : "#ddd", // Lighter when pressed

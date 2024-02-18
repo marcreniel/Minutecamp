@@ -27,28 +27,31 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 const dummyPosts = [
   {
     id: "1",
-    video: "https://video.gumlet.io/65d1755e04d0f4f8273e0e91/65d17aa504d0f4f8273f634c/download.mp4",
-    caption: "How to hack a hackathon - Pt1",
+    video:
+      "https://video.gumlet.io/65d1755e04d0f4f8273e0e91/65d184ae04d0f4f82740e0ad/download.mp4",
+    caption: "How to do taxes",
+    creator: "Creator: Gohar's Guide",
   },
   {
     id: "2",
-    video: "https://video.gumlet.io/65d1755e04d0f4f8273e0e91/65d17af17759c9daec22ae22/download.mp4",
-    caption: "How to hack a hackathon - Pt2",
+    video:
+      "https://video.gumlet.io/65d1755e04d0f4f8273e0e91/65d1c23b04d0f4f82742c5d2/download.mp4",
+    caption: "Money management in college",
+    creator: "Creator: Gohar's Guide",
   },
   {
     id: "3",
-    video: "https://video.gumlet.io/65d1755e04d0f4f8273e0e91/65d17af104d0f4f8273f7dbe/download.mp4",
-    caption: "How to hack a hackathon - Pt3",
+    video:
+      "https://video.gumlet.io/65d1755e04d0f4f8273e0e91/65d1c3027759c9daec269b91/download.mp4",
+    caption: "How to budget",
+    creator: "Creator: Gohar's Guide",
   },
   {
     id: "4",
-    video: "https://video.gumlet.io/65d1755e04d0f4f8273e0e91/65d17af104d0f4f8273f7dc1/download.mp4",
-    caption: "How to hack a hackathon - Pt4",
-  },
-  {
-    id: "5",
-    video: "https://video.gumlet.io/65d1755e04d0f4f8273e0e91/65d17b9a7759c9daec22ef8c/download.mp4",
+    video:
+      "https://video.gumlet.io/65d1755e04d0f4f8273e0e91/65d1c8207759c9daec26ac24/download.mp4",
     caption: "Quiz",
+    creator: "",
   },
 ];
 
