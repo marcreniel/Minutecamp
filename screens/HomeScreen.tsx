@@ -3,11 +3,8 @@ import React, { useCallback, useMemo, useRef } from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import BottomSheetComponent from "./components/popupSheet";
 
-import DiscoverFeed from "./components/discoverFeed";
+import DiscoverFeed from "../components/discoverFeed";
 
 // import { CONVEX_URL } from "@env";
 // import "react-native-get-random-values";
@@ -38,7 +35,7 @@ function HomeScreen({ navigation }: { navigation: any }) {
       <GestureHandlerRootView style={{ flex: 1 }}>
         {/* <ConvexProvider client={convex}>
         <Tasks />
-      </ConvexProvider> */}
+        </ConvexProvider> */}
         <BottomSheetModalProvider>
           <View style={styles.container}>
             {/* <Button
@@ -71,4 +68,3 @@ const styles = StyleSheet.create({
 });
 
 export default HomeScreen;
-

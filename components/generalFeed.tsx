@@ -1,11 +1,10 @@
 // App.js
 import React, { useEffect, useRef, useState, useCallback, useMemo } from "react";
-import { Button, FlatList, Pressable, StyleSheet, Text, View, ViewToken } from "react-native";
+import { FlatList, StyleSheet, View, ViewToken } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import VideoPost from "./VideoPost";
 import BottomSheetComponent from "./popupSheet";
 import { BottomSheetModal, BottomSheetModalProvider } from '@gorhom/bottom-sheet';
-import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 const dummyPosts = [
   {
