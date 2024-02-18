@@ -51,7 +51,7 @@ const VideoPost = ({ post, activePostId }: VideoPost) => {
           video.current.pauseAsync();
         }
       });
-  
+
       return blurUnsubscribe;
     }, [navigation])
   );
@@ -94,17 +94,24 @@ const VideoPost = ({ post, activePostId }: VideoPost) => {
         <SafeAreaView style={{ flex: 1 }}>
           <View style={styles.footer}>
             {/* bottom: caption */}
-            <View style={styles.leftColumn}>
-              <Text style={styles.caption}>{post.caption}</Text>
-            </View>
-            <Button
-              title="Go to Feed"
-              onPress={() => navigation.navigate("Feed")}
-            />
-
-            {/* Vertical column of icon-buttons */}
-            <View style={styles.rightColumn}></View>
+            <Text style={styles.caption}>{post.caption}</Text>
           </View>
+          <Pressable
+            onPress={() => navigation.navigate("Feed")}
+            style={({ pressed }) => [
+              {
+                backgroundColor: pressed ? "#fff" : "#ddd", // Lighter when pressed
+                padding: 10,
+                borderRadius: 5,
+                alignItems: "center",
+                justifyContent: "center",
+              },
+            ]}
+          >
+            <Text style={{ color: "black", fontWeight: "bold" }}>
+              Click to Continue
+            </Text>
+          </Pressable>
         </SafeAreaView>
       </Pressable>
     </View>
@@ -122,16 +129,19 @@ const styles = StyleSheet.create({
     top: "50%",
   },
   footer: {
-    marginTop: "auto",
-    flexDirection: "row",
-    alignItems: "flex-end",
+    marginTop: 625,
   },
   leftColumn: {
     flex: 1,
   },
   caption: {
     color: "white",
-    fontSize: 18,
+    fontSize: 20,
+    justifyContent: "center",
+    alignItems: "center",
+    textAlign: "center",
+    fontWeight: "bold",
+    paddingBottom: 15,
   },
   rightColumn: {
     gap: 10,

@@ -12,6 +12,7 @@ import {
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import DiscoverPost from "./discoverPost";
+import { AntDesign } from "@expo/vector-icons";
 
 const dummyPosts = [
   {
@@ -24,7 +25,7 @@ const dummyPosts = [
     id: "2",
     video:
       "https://video.gumlet.io/65d1755e04d0f4f8273e0e91/65d184ae04d0f4f82740e0ad/download.mp4",
-    caption: "How to: taxes",
+    caption: "How to: Taxes",
   },
   {
     id: "3",
@@ -42,7 +43,7 @@ const dummyPosts = [
     id: "5",
     video:
       "https://video.gumlet.io/65d1755e04d0f4f8273e0e91/65d186b67759c9daec24afb9/download.mp4",
-    caption: "Basic arithmetic on Excel",
+    caption: "Introduction to Python",
   },
 ];
 
@@ -93,7 +94,7 @@ const GeneralFeed = () => {
           contentContainerStyle={styles.categoriesContentContainer}
         >
           {categories.map((category, index) => (
-              <Pressable
+            <Pressable
               key={index}
               onPress={() => console.log(`Pressed ${category}`)} // Add your onPress functionality here
               style={({ pressed }) => [
@@ -118,6 +119,19 @@ const GeneralFeed = () => {
         onEndReached={onEndReached}
         onEndReachedThreshold={0.1} // Typically a value between 0 and 1, like 0.5 for halfway
       />
+      <View style={styles.bottomBar}>
+        <Pressable
+          onPress={() => console.log("Profile Pressed")}
+          style={({ pressed }) => [
+            {
+              opacity: pressed ? 0.5 : 1,
+            },
+            styles.smileoPressable,
+          ]}
+        >
+          <AntDesign name="smileo" size={30} color="black" />
+        </Pressable>
+      </View>
     </View>
   );
 };
@@ -142,13 +156,33 @@ const styles = StyleSheet.create({
   },
   category: {
     marginRight: 10,
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    backgroundColor: 'rgba(194, 212, 194, 0.8)',
     borderRadius: 20,
     paddingVertical: 15,
     paddingHorizontal: 15,
   },
   categoryText: {
-    color: "white",
+    color: "black",
+  },
+  bottomBar: {
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: 70, 
+    backgroundColor: "#C2D4C2", 
+    justifyContent: "center",
+    alignItems: "center",
+    zIndex: 50,
+  },
+  smileoPressable: {
+    position: "absolute", 
+    bottom: 30, 
+    left: 0, 
+    right: 0, 
+    zIndex: 50, 
+    alignItems: "center", 
+    justifyContent: "center", 
   },
 });
 
