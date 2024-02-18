@@ -8,6 +8,7 @@ import {
   Text,
   View,
   ViewToken,
+  ScrollView,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import DiscoverPost from "./discoverPost";
@@ -39,10 +40,13 @@ const dummyPosts = [
   },
   {
     id: "5",
-    video:"https://video.gumlet.io/65d1755e04d0f4f8273e0e91/65d186b67759c9daec24afb9/download.mp4",
+    video:
+      "https://video.gumlet.io/65d1755e04d0f4f8273e0e91/65d186b67759c9daec24afb9/download.mp4",
     caption: "Basic arithmetic on Excel",
   },
 ];
+
+const categories = ["All", "Technology", "Education", "Lifestyle", "Sports"];
 
 const GeneralFeed = () => {
   const [activePostId, setActivePostId] = useState(dummyPosts[0].id);
@@ -80,6 +84,28 @@ const GeneralFeed = () => {
   return (
     <View style={styles.container}>
       <StatusBar style="light" />
+      <View style={styles.overlayContainer}>
+        {/* Category Scroll View */}
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          style={styles.categoriesContainer}
+          contentContainerStyle={styles.categoriesContentContainer}
+        >
+          {categories.map((category, index) => (
+              <Pressable
+              key={index}
+              onPress={() => console.log(`Pressed ${category}`)} // Add your onPress functionality here
+              style={({ pressed }) => [
+                styles.category,
+                { opacity: pressed ? 0.5 : 1 }, // Reduce opacity when pressed
+              ]}
+            >
+              <Text style={styles.categoryText}>{category}</Text>
+            </Pressable>
+          ))}
+        </ScrollView>
+      </View>
       <FlatList
         data={posts}
         renderItem={({ item }) => (
@@ -96,11 +122,34 @@ const GeneralFeed = () => {
   );
 };
 
-export default GeneralFeed;
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "black",
   },
+  overlayContainer: {
+    position: "absolute",
+    zIndex: 1, // Make sure the overlay is above other components
+    width: "100%", // Cover the full width of the screen
+    paddingHorizontal: 0,
+  },
+  categoriesContainer: {
+    backgroundColor: "rgba(0, 0, 0, 0)", // Semi-transparent background
+  },
+  categoriesContentContainer: {
+    paddingHorizontal: 10,
+    paddingVertical: 60,
+  },
+  category: {
+    marginRight: 10,
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    borderRadius: 20,
+    paddingVertical: 15,
+    paddingHorizontal: 15,
+  },
+  categoryText: {
+    color: "white",
+  },
 });
+
+export default GeneralFeed;
