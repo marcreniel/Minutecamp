@@ -40,6 +40,7 @@ function HomeScreen({ navigation }: { navigation: any }) {
       <BottomSheetModalProvider>
         <View style={styles.container}>
           <Button title="Go to Feed" onPress={() => navigation.navigate("Feed")} />
+          <Button title="Go to Profile" onPress={() => navigation.navigate("Profile")} />
           <Button
             onPress={handlePresentModalPress}
             title="Present Modal"

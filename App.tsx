@@ -8,6 +8,7 @@ import { Video, ResizeMode, AVPlaybackStatus } from "expo-av";
 import VideoPost from "./components/VideoPost";
 import HomeScreen from "./HomeScreen";
 import QuizScreen from "./Quiz";
+import ProfileScreen from "./Profile";
 
 const dummyPosts = [
   {
@@ -97,12 +98,9 @@ const App = () => {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen
-          name="Feed"
-          component={FeedScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen name="Quiz" component={QuizScreen} />
+        <Stack.Screen name="Feed" component={FeedScreen} options={{ headerShown: false }}/>
+        <Stack.Screen name="Quiz" component={QuizScreen} options={{ headerShown: false }}/>
+        <Stack.Screen name="Profile" component={ProfileScreen} options={{ headerShown: false }}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
