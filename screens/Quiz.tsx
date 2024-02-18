@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, SafeAreaView, StatusBar, TouchableOpacity, Modal, Animated } from 'react-native';
-import data from './data/QuizData';
+import data from '../data/QuizData';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';

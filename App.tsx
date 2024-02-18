@@ -1,53 +1,37 @@
 // App.js
-import React, { useEffect, useRef, useState } from "react";
-import {
-  Button,
-  FlatList,
-  Pressable,
-  StyleSheet,
-  Text,
-  View,
-  ViewToken,
-} from "react-native";
-import { StatusBar } from "expo-status-bar";
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { Video, ResizeMode, AVPlaybackStatus } from "expo-av";
-import VideoPost from "./components/VideoPost";
-import HomeScreen from "./HomeScreen";
-import QuizScreen from "./Quiz";
-import FeedScreen from "./components/generalFeed";
+import React from "react";
+import AppStack from "./navigation";
+import useCachedResources from "./hooks/useCachedResources";
+import { tokenCache } from "./cache";
+import { CONVEX_URL } from "@env";
+import { ClerkProvider, useAuth} from "@clerk/clerk-expo";
+import { ConvexProvider, ConvexReactClient } from "convex/react";
+import { ConvexProviderWithClerk } from "convex/react-clerk";
+import "react-native-get-random-values";
+import Tasks from "./tasks";
 
-const Stack = createNativeStackNavigator();
+// Your publishable Key goes here
+const publishableKey = "pk_test_bWFnbmV0aWMtdG9ydG9pc2UtOTMuY2xlcmsuYWNjb3VudHMuZGV2JA";
+
+const convex = new ConvexReactClient(CONVEX_URL, {
+  unsavedChangesWarning: false,
+});
 
 const App = () => {
-  return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName="Home">
-          <Stack.Screen
-            name="Home"
-            component={HomeScreen}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="Feed"
-            component={FeedScreen}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen name="Quiz" component={QuizScreen} options={{ headerShown: false }}/>
-        </Stack.Navigator>
-      </NavigationContainer>
-    </GestureHandlerRootView>
-  );
-};
+  const isLoadingComplete = useCachedResources();
+
+  if (!isLoadingComplete) {
+    return null;
+  } else {
+    return (
+      <ClerkProvider publishableKey={publishableKey} tokenCache={tokenCache}>
+        <ConvexProviderWithClerk client={convex} useAuth={useAuth}>
+          <AppStack/>
+        </ConvexProviderWithClerk>
+      </ClerkProvider>
+    );
+  };
+}
 
 export default App;
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "black",
-  },
-});
