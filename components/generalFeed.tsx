@@ -1,11 +1,11 @@
 // App.js
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useCallback, useMemo } from "react";
 import { Button, FlatList, Pressable, StyleSheet, Text, View, ViewToken } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import VideoPost from "./VideoPost";
 import BottomSheetComponent from "./popupSheet";
 import { BottomSheetModal, BottomSheetModalProvider } from '@gorhom/bottom-sheet';
-
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 const dummyPosts = [
   {
@@ -41,6 +41,15 @@ const dummyPosts = [
 ];
 
 const GeneralFeed = () => {
+  const bottomSheetModalRef = useRef<BottomSheetModal>(null);
+
+  // variables
+  const snapPoints = useMemo(() => ['25%', '50%'], []);
+
+  const handleSheetChanges = useCallback((index: number) => {
+    console.log('handleSheetChanges', index);
+  }, []);
+
   const [activePostId, setActivePostId] = useState(dummyPosts[0].id);
   const [posts, setPosts] = useState<typeof dummyPosts>([]);
   
@@ -64,28 +73,32 @@ const GeneralFeed = () => {
     },
   ]);
 
-  const onEndReached = () => {
-    // fetch more posts from database
-    // setPosts((currentPosts) => [...currentPosts, ...dummyPosts]);
-  };
-  
-
+  const onEndReached = useCallback(() => {
+    bottomSheetModalRef.current?.present();
+  }, []);
   return (
-    <View style={styles.container}>
-      <StatusBar style="light" />
-      <FlatList
-        data={posts}
-        renderItem={({ item }) => (
-          <VideoPost post={item} activePostId={activePostId} />
-        )}
-        keyExtractor={(item, index) => `${item.id}-${index}`}
-        pagingEnabled
-        viewabilityConfigCallbackPairs={viewabilityConfigCallbackPairs.current}
-        showsVerticalScrollIndicator={false}
-        onEndReached={onEndReached}
-        onEndReachedThreshold={0.1} // Typically a value between 0 and 1, like 0.5 for halfway
-      />
-    </View>
+    <BottomSheetModalProvider>
+      <View style={styles.container}>
+        <StatusBar style="light" />
+        <FlatList
+          data={posts}
+          renderItem={({ item }) => (
+            <VideoPost post={item} activePostId={activePostId} />
+          )}
+          keyExtractor={(item, index) => `${item.id}-${index}`}
+          pagingEnabled
+          viewabilityConfigCallbackPairs={viewabilityConfigCallbackPairs.current}
+          showsVerticalScrollIndicator={false}
+          onEndReached={onEndReached}
+          onEndReachedThreshold={0.1} // Typically a value between 0 and 1, like 0.5 for halfway
+        />
+        <BottomSheetComponent
+          modalRef={bottomSheetModalRef}
+          snapPoints={snapPoints}
+          handleSheetChanges={handleSheetChanges}
+        /> 
+      </View>
+    </BottomSheetModalProvider>
   );
 };
 
