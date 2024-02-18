@@ -57,11 +57,13 @@ function AppStack() {
                     />
                     <Stack.Screen
                     name="SignIn"
+                    /*@ts-ignore*/
                     component={SignInScreen}
                     options={{ title: "Sign In" }}
                     />
                     <Stack.Screen
                     name="VerifyCode"
+                    /*@ts-ignore*/
                     component={VerifyCodeScreen}
                     options={{ title: "Sign Up" }}
                     />
