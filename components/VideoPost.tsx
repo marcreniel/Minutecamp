@@ -5,7 +5,7 @@ import {
     Pressable,
     useWindowDimensions,
   } from 'react-native';
-  import { Video, ResizeMode, AVPlaybackStatus } from 'expo-av';
+  import { Video, ResizeMode, AVPlaybackStatus, AVPlaybackSource } from 'expo-av';
   import { SafeAreaView } from 'react-native-safe-area-context';
   import { Ionicons } from '@expo/vector-icons';
   import { LinearGradient } from 'expo-linear-gradient';
@@ -20,15 +20,15 @@ import {
     };
     activePostId: string;
   };
-  
+
   const VideoPost = ({ post, activePostId }: VideoPost) => {
     const video = useRef<Video>(null);
     const [status, setStatus] = useState<AVPlaybackStatus>();
-  
+
     const isPlaying = status?.isLoaded && status.isPlaying;
-  
+
     const { height } = useWindowDimensions();
-  
+
     useEffect(() => {
       if (!video.current) {
         return;
@@ -40,7 +40,7 @@ import {
         video.current.playAsync();
       }
     }, [activePostId, video.current]);
-  
+
     const onPress = () => {
       if (!video.current) {
         return;
@@ -51,7 +51,7 @@ import {
         video.current.playAsync();
       }
     };
-  
+
     return (
       <View style={[styles.container, { height }]}>
         <Video
@@ -62,7 +62,7 @@ import {
           onPlaybackStatusUpdate={setStatus}
           isLooping
         />
-  
+
         <Pressable onPress={onPress} style={styles.content}>
           <LinearGradient
             colors={['transparent', 'rgba(0,0,0,0.8)']}
@@ -82,7 +82,7 @@ import {
               <View style={styles.leftColumn}>
                 <Text style={styles.caption}>{post.caption}</Text>
               </View>
-  
+
               {/* Vertical column of icon-buttons */}
               <View style={styles.rightColumn}>
                 <Ionicons name="heart" size={35} color="white" />
@@ -95,7 +95,7 @@ import {
       </View>
     );
   };
-  
+
   const styles = StyleSheet.create({
     container: {},
     video: {},

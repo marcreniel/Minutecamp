@@ -12,8 +12,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import { useEffect, useRef, useState } from "react";
 import React from "react";
-import { useNavigation } from "@react-navigation/native";
-
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 
 type VideoPost = {
   post: {
@@ -25,7 +24,7 @@ type VideoPost = {
 };
 
 const VideoPost = ({ post, activePostId }: VideoPost) => {
-  const navigation = useNavigation()
+  const navigation = useNavigation();
   const video = useRef<Video>(null);
   const [status, setStatus] = useState<AVPlaybackStatus>();
 
@@ -44,6 +43,18 @@ const VideoPost = ({ post, activePostId }: VideoPost) => {
       video.current.playAsync();
     }
   }, [activePostId, video.current]);
+
+  useFocusEffect(
+    React.useCallback(() => {
+      const blurUnsubscribe = navigation.addListener("blur", () => {
+        if (video.current) {
+          video.current.pauseAsync();
+        }
+      });
+  
+      return blurUnsubscribe;
+    }, [navigation])
+  );
 
   const onPress = () => {
     if (!video.current) {

@@ -1,16 +1,46 @@
 // App.js
 import React, { useEffect, useRef, useState } from "react";
-import { Button, FlatList, Pressable, StyleSheet, Text, View, ViewToken } from "react-native";
+import {
+  Button,
+  FlatList,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+  ViewToken,
+} from "react-native";
 import { StatusBar } from "expo-status-bar";
 import DiscoverPost from "./discoverPost";
 
-
 const dummyPosts = [
   {
-    id: '4',
+    id: "1",
     video:
-      'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/vertical-videos/4.mp4',
-    caption: 'Piano practice',
+      "https://video.gumlet.io/65d1755e04d0f4f8273e0e91/65d17aa504d0f4f8273f634c/download.mp4",
+    caption: "Hackathons 101",
+  },
+  {
+    id: "2",
+    video:
+      "https://video.gumlet.io/65d1755e04d0f4f8273e0e91/65d184ae04d0f4f82740e0ad/download.mp4",
+    caption: "How to: taxes",
+  },
+  {
+    id: "3",
+    video:
+      "https://video.gumlet.io/65d1755e04d0f4f8273e0e91/65d184ae7759c9daec249a86/download.mp4",
+    caption: "What is Excel?",
+  },
+  {
+    id: "4",
+    video:
+      "https://video.gumlet.io/65d1755e04d0f4f8273e0e91/65d184ae7759c9daec249a89/download.mp4",
+    caption: "Basic arithmetic on Excel",
+  },
+  {
+    id: "5",
+    video:"https://video.gumlet.io/65d1755e04d0f4f8273e0e91/65d186b67759c9daec24afb9/download.mp4",
+    caption: "Basic arithmetic on Excel",
   },
 ];
 
@@ -30,7 +60,11 @@ const GeneralFeed = () => {
   const viewabilityConfigCallbackPairs = useRef([
     {
       viewabilityConfig: { itemVisiblePercentThreshold: 50 },
-      onViewableItemsChanged: ({ viewableItems }: { viewableItems: ViewToken[] }) => {
+      onViewableItemsChanged: ({
+        viewableItems,
+      }: {
+        viewableItems: ViewToken[];
+      }) => {
         if (viewableItems.length > 0 && viewableItems[0].isViewable) {
           setActivePostId(viewableItems[0].item.id);
         }
@@ -40,7 +74,7 @@ const GeneralFeed = () => {
 
   const onEndReached = () => {
     // fetch more posts from database
-    setPosts((currentPosts) => [...currentPosts, ...dummyPosts]);
+    // setPosts((currentPosts) => [...currentPosts, ...dummyPosts]);
   };
 
   return (
@@ -67,6 +101,6 @@ export default GeneralFeed;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'black',
+    backgroundColor: "black",
   },
 });
