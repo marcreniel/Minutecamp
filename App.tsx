@@ -17,7 +17,11 @@ import { Video, ResizeMode, AVPlaybackStatus } from "expo-av";
 import VideoPost from "./components/VideoPost";
 import HomeScreen from "./HomeScreen";
 import QuizScreen from "./Quiz";
-import FeedScreen from "./components/generalFeed";
+import FeedScreen from "./components/hackathonFeed";
+import TaxesFeed from "./components/taxesFeed";
+import ExcelFeed from "./components/excelFeed";
+import Excel2Feed from "./components/excel2Feed";
+import PythonFeed from "./components/pythonFeed";
 
 const Stack = createNativeStackNavigator();
 
@@ -34,6 +38,26 @@ const App = () => {
           <Stack.Screen
             name="Feed"
             component={FeedScreen}
+            options={{ headerShown: false }}
+          />
+           <Stack.Screen
+            name="TaxesFeed"
+            component={TaxesFeed}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="ExcelFeed"
+            component={ExcelFeed}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Excel2Feed"
+            component={Excel2Feed}
+            options={{ headerShown: false }}
+          />
+           <Stack.Screen
+            name="PythonFeed"
+            component={PythonFeed}
             options={{ headerShown: false }}
           />
           <Stack.Screen name="Quiz" component={QuizScreen} options={{ headerShown: false }}/>
