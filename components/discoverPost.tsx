@@ -88,6 +88,7 @@ const VideoPost = ({ post, activePostId }: VideoPost) => {
             </View>
             <Button
               title="Go to Feed"
+              /*@ts-ignore */
               onPress={() => navigation.navigate("Feed")}
             />
 

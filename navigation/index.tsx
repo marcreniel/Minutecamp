@@ -9,21 +9,19 @@ import SignUpScreen from "../screens/SignUpScreen";
 import SignInScreen from "../screens/SignInScreen";
 import VerifyCodeScreen from "../screens/VerifyCodeScreen";
 import MyProfileScreen from "../screens/MyProfileScreen";
-import { RootStackParamList } from "../types";
-import LinkingConfiguration from "./LinkingConfiguration";
-import { ClerkLoaded, useUser } from "@clerk/clerk-expo";
+import { ClerkLoaded } from "@clerk/clerk-expo";
+import { useConvexAuth } from "convex/react";
 
 const Stack = createNativeStackNavigator(); 
 
 function AppStack() {
-  const { isSignedIn } = useUser();
-
+  const { isAuthenticated } =  useConvexAuth()
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <NavigationContainer>
         <ClerkLoaded>
             <Stack.Navigator>
-                {isSignedIn ? (
+                {isAuthenticated ? (
                 <>
                     <Stack.Screen
                         name="MyProfile"

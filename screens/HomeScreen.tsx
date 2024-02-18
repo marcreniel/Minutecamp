@@ -6,15 +6,6 @@ import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 
 import DiscoverFeed from "../components/discoverFeed";
 
-// import { CONVEX_URL } from "@env";
-// import "react-native-get-random-values";
-// import Tasks from "./tasks";
-// import { ConvexProvider, ConvexReactClient } from "convex/react";
-
-// const convex = new ConvexReactClient(CONVEX_URL, {
-//   unsavedChangesWarning: false,
-// });
-
 function HomeScreen({ navigation }: { navigation: any }) {
   // @ts-ignore
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
@@ -38,20 +29,6 @@ function HomeScreen({ navigation }: { navigation: any }) {
         </ConvexProvider> */}
         <BottomSheetModalProvider>
           <View style={styles.container}>
-            {/* <Button
-              title="Go to Feed"
-              onPress={() => navigation.navigate("Feed")}
-            /> */}
-            {/* <Button
-              onPress={handlePresentModalPress}
-              title="Present Modal"
-              color="black"
-            />
-            <BottomSheetComponent
-              modalRef={bottomSheetModalRef}
-              snapPoints={snapPoints}
-              handleSheetChanges={handleSheetChanges}
-            /> */}
             <DiscoverFeed />
           </View>
         </BottomSheetModalProvider>
