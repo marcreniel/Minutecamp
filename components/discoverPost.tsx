@@ -12,8 +12,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import { useEffect, useRef, useState } from "react";
 import React from "react";
-import { useNavigation } from "@react-navigation/native";
-
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 
 type VideoPost = {
   post: {
@@ -25,7 +24,7 @@ type VideoPost = {
 };
 
 const VideoPost = ({ post, activePostId }: VideoPost) => {
-  const navigation = useNavigation()
+  const navigation = useNavigation();
   const video = useRef<Video>(null);
   const [status, setStatus] = useState<AVPlaybackStatus>();
 
@@ -44,6 +43,18 @@ const VideoPost = ({ post, activePostId }: VideoPost) => {
       video.current.playAsync();
     }
   }, [activePostId, video.current]);
+
+  useFocusEffect(
+    React.useCallback(() => {
+      const blurUnsubscribe = navigation.addListener("blur", () => {
+        if (video.current) {
+          video.current.pauseAsync();
+        }
+      });
+
+      return blurUnsubscribe;
+    }, [navigation])
+  );
 
   const onPress = () => {
     if (!video.current) {
@@ -83,18 +94,50 @@ const VideoPost = ({ post, activePostId }: VideoPost) => {
         <SafeAreaView style={{ flex: 1 }}>
           <View style={styles.footer}>
             {/* bottom: caption */}
-            <View style={styles.leftColumn}>
-              <Text style={styles.caption}>{post.caption}</Text>
-            </View>
-            <Button
-              title="Go to Feed"
-              /*@ts-ignore */
-              onPress={() => navigation.navigate("Feed")}
-            />
-
-            {/* Vertical column of icon-buttons */}
-            <View style={styles.rightColumn}></View>
+            <Text style={styles.caption}>{post.caption}</Text>
           </View>
+          <Pressable
+            onPress={() => {
+              let destination: string | undefined = undefined; // Default destination
+              switch (post.id) {
+                case "1":
+                  destination = "Feed";
+                  break;
+                case "2":
+                  destination = "TaxesFeed";
+                  break;
+                case "3":
+                  destination = "ExcelFeed";
+                  break;
+                case "4":
+                  destination = "Excel2Feed";
+                  break;
+                case "5":
+                  destination = "PythonFeed";
+                  break;
+                default:
+                  // The default destination is already set above
+                  break;
+              }
+              // Navigate to the determined destination if it is defined
+              if (destination) {
+                navigation.navigate(destination as never);
+              }
+            }}
+            style={({ pressed }) => [
+              {
+                backgroundColor: pressed ? "#fff" : "#ddd", // Lighter when pressed
+                padding: 10,
+                borderRadius: 5,
+                alignItems: "center",
+                justifyContent: "center",
+              },
+            ]}
+          >
+            <Text style={{ color: "black", fontWeight: "bold" }}>
+              Click to Continue
+            </Text>
+          </Pressable>
         </SafeAreaView>
       </Pressable>
     </View>
@@ -112,16 +155,19 @@ const styles = StyleSheet.create({
     top: "50%",
   },
   footer: {
-    marginTop: "auto",
-    flexDirection: "row",
-    alignItems: "flex-end",
+    marginTop: 625,
   },
   leftColumn: {
     flex: 1,
   },
   caption: {
     color: "white",
-    fontSize: 18,
+    fontSize: 20,
+    justifyContent: "center",
+    alignItems: "center",
+    textAlign: "center",
+    fontWeight: "bold",
+    paddingBottom: 15,
   },
   rightColumn: {
     gap: 10,
