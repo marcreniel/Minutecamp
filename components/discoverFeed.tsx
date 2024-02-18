@@ -26,7 +26,7 @@ const dummyPosts = [
     id: "2",
     video:
       "https://video.gumlet.io/65d1755e04d0f4f8273e0e91/65d184ae04d0f4f82740e0ad/download.mp4",
-    caption: "How to: Taxes",
+    caption: "How to: Money Management",
   },
   {
     id: "3",

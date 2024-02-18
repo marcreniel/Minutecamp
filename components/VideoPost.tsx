@@ -81,13 +81,7 @@ import {
               {/* bottom: caption */}
               <View style={styles.leftColumn}>
                 <Text style={styles.caption}>{post.caption}</Text>
-              </View>
-
-              {/* Vertical column of icon-buttons */}
-              <View style={styles.rightColumn}>
-                <Ionicons name="heart" size={35} color="white" />
-                <Ionicons name="share-social-sharp" size={35} color="white" />
-                <Ionicons name="bookmark" size={35} color="white" />
+                <Text style={styles.creator}>{post.creator}</Text>
               </View>
             </View>
           </SafeAreaView>
@@ -107,7 +101,7 @@ import {
       top: '50%',
     },
     footer: {
-      marginTop: 'auto',
+      marginTop: 700,
       flexDirection: 'row',
       alignItems: 'flex-end',
     },
@@ -117,6 +111,11 @@ import {
     caption: {
       color: 'white',
       fontSize: 18,
+    },
+    creator: {
+      color: 'white',
+      fontSize: 18,
+      fontWeight: 'bold',
     },
     rightColumn: {
       gap: 10,
