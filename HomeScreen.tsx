@@ -1,11 +1,13 @@
 // App.js
-import React, { useCallback, useMemo, useRef } from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import BottomSheetComponent from './components/popupSheet';
+import React, { useCallback, useMemo, useRef } from "react";
+import { View, Text, StyleSheet, Button } from "react-native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import BottomSheetComponent from "./components/popupSheet";
+
+import DiscoverFeed from "./components/discoverFeed";
 
 // import { CONVEX_URL } from "@env";
 // import "react-native-get-random-values";
@@ -21,7 +23,7 @@ function HomeScreen({ navigation }: { navigation: any }) {
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
 
   // variables
-  const snapPoints = useMemo(() => ['25%', '50%'], []);
+  const snapPoints = useMemo(() => ["25%", "50%"], []);
 
   // callbacks
   const handlePresentModalPress = useCallback(() => {
@@ -29,39 +31,42 @@ function HomeScreen({ navigation }: { navigation: any }) {
   }, []);
 
   const handleSheetChanges = useCallback((index: number) => {
-    console.log('handleSheetChanges', index);
+    console.log("handleSheetChanges", index);
   }, []);
 
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      {/* <ConvexProvider client={convex}>
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        {/* <ConvexProvider client={convex}>
         <Tasks />
       </ConvexProvider> */}
-      <BottomSheetModalProvider>
-        <View style={styles.container}>
-          <Button title="Go to Feed" onPress={() => navigation.navigate("Feed")} />
-          <Button
-            onPress={handlePresentModalPress}
-            title="Present Modal"
-            color="black"
-          />
-          <BottomSheetComponent
-            modalRef={bottomSheetModalRef}
-            snapPoints={snapPoints}
-            handleSheetChanges={handleSheetChanges}
-          />
-        </View>
-      </BottomSheetModalProvider>
-    </GestureHandlerRootView>
+        <BottomSheetModalProvider>
+          <View style={styles.container}>
+            {/* <Button
+              title="Go to Feed"
+              onPress={() => navigation.navigate("Feed")}
+            /> */}
+            {/* <Button
+              onPress={handlePresentModalPress}
+              title="Present Modal"
+              color="black"
+            />
+            <BottomSheetComponent
+              modalRef={bottomSheetModalRef}
+              snapPoints={snapPoints}
+              handleSheetChanges={handleSheetChanges}
+            /> */}
+            <DiscoverFeed />
+          </View>
+        </BottomSheetModalProvider>
+      </GestureHandlerRootView>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 24,
-    justifyContent: 'center',
-    backgroundColor: 'grey',
+    justifyContent: "center",
+    backgroundColor: "grey",
   },
 });
 
