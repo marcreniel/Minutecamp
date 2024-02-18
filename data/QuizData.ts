@@ -1,29 +1,19 @@
-const data: any[] = [
+const data = [
     {
-        question: "Example 1",
-        options: ["1","2","3","4"],
-        correct_option: "2"
+      question: "What is a hackathon?",
+      options: ["A coding competition", "A flower", "A race", "A dance"], 
+      correct_option: "A coding competition"
     },
     {
-        question: "Example 2",
-        options: ["1","2","3","4"],
-        correct_option: "1"
+      question: "How do you form a team?", 
+      options: ["Ask friends to join", "Join randomly", "Apply solo", "Wait to be assigned"],
+      correct_option: "Ask friends to join"
     },
     {
-        question: "Example 3",
-        options: ["1","2","3","4"],
-        correct_option: "3"
-    },
-    {
-        question: "Example 4",
-        options: ["1","2","3","4"],
-        correct_option: "4"
-    },
-    {
-        question: "Example 5",
-        options: ["1","2","3","4"],
-        correct_option: "4"
+      question: "Who are you pitching to?",
+      options: ["Aliens", "Other teams", "Judges", "The audience"],
+      correct_option: "Judges" 
     }
-];
+  ];
 
-export default data;
+  export default data;

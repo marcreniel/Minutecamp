@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Image, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { useSignIn } from "@clerk/clerk-expo";
 import { log } from "../logger";
 import { RootStackScreenProps } from "../types";
@@ -36,6 +36,10 @@ export default function SignInScreen({
 
   return (
     <View style={styles.container}>
+              <Image 
+        source={require('../assets/logo.png')}
+        style={styles.image}
+      />
       <View style={styles.oauthView}>
         <OAuthButtons />
       </View>

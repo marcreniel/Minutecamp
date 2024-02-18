@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Button, FlatList } from 'react-native';
+import { Image, View, Text, StyleSheet, Button, FlatList } from 'react-native';
 import { Ionicons } from '@expo/vector-icons'; 
 import { Feather } from '@expo/vector-icons';
 import { SignedIn, SignedOut, useAuth, useUser } from "@clerk/clerk-expo";
@@ -42,13 +42,18 @@ const ProfileScreen = ({ navigation }: { navigation: any }) => {
 
   return (
     <View style={styles.container}>
-
-<View style={styles.titleContainer}>
+      <View style={styles.ImageContainer}>
+        <Image 
+          source={require('../assets/logo.png')}
+          style={styles.image}
+        />
+      </View>
+      <View style={styles.titleContainer}>
         <Text style={[styles.titleText]}>Profile Screen</Text>
       </View>
 
       <View style={styles.content}>
-        <Text style={[styles.textContent]}>Name: John Doe</Text>
+        <Text style={[styles.textContent]}>Name: {user?.fullName}</Text>
 
       {/* New Courses in Progress Section */}
       <Text style={[styles.inProgressCoursesText]}>Courses in Progress:</Text>  
@@ -106,7 +111,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   titleContainer: {
-    paddingTop: 40,
+    paddingTop: 0,
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
     marginBottom: 20,
@@ -123,21 +128,21 @@ const styles = StyleSheet.create({
   },
   textContent: {
     fontSize: 25,
-    marginBottom: 20, 
+    marginBottom: 10, 
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
     color: '#555',
   },
   completedCoursesText: {
     fontSize: 30,
-    marginBottom: 50,
+    marginBottom: 20,
     justifyContent: 'flex-start', 
     alignItems: 'flex-start',
     color: '#27ae60',
   },
   inProgressCoursesText: {
     fontSize: 30,
-    marginBottom: 50,
+    marginBottom: 20,
     justifyContent: 'flex-start',
     alignItems: 'flex-start', 
     color: '#f1c40f'
@@ -152,7 +157,18 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginLeft: 10, 
     color: '#555',
-  }
+  },
+
+  ImageContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  image: {
+    width: 200,
+    height: 200,
+    justifyContent: 'center',
+  },
 });
 
 export default ProfileScreen;

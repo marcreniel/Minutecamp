@@ -29,21 +29,20 @@ function AppStack() {
           <Stack.Navigator>
             {isAuthenticated ? (
               <>
-                <Stack.Screen
+                {/* <Stack.Screen
                   name="MyProfile"
-                  /*@ts-ignore*/
                   component={MyProfileScreen}
                   options={{ title: "MyProfile" }}
+                /> */}
+                <Stack.Screen
+                  name="Home"
+                  component={HomeScreen}
+                  options={{ headerShown: false }}
                 />
                 <Stack.Screen
                   name="Profile"
                   /*@ts-ignore*/
                   component={ProfileScreen}
-                  options={{ title: "Profile" }}
-                />
-                <Stack.Screen
-                  name="Home"
-                  component={HomeScreen}
                   options={{ headerShown: false }}
                 />
                 <Stack.Screen

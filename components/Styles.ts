@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
     width: "90%",
     height: 45,
     marginBottom: 20,
-    borderColor: "#000",
+    borderColor: "#5DB075",
     borderStyle: "solid",
     borderWidth: 1,
   },
@@ -32,8 +32,8 @@ export const styles = StyleSheet.create({
     height: 50,
     alignItems: "center",
     justifyContent: "center",
-    marginTop: 40,
-    backgroundColor: "#000",
+    marginTop: 10,
+    backgroundColor: "#5DB075",
     color: "#ffffff",
   },
 
@@ -66,7 +66,7 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "#ffffff",
     borderWidth: 1,
-    borderColor: "#000",
+    borderColor: "#5DB075",
   },
 
   secondaryButtonText: {
@@ -77,7 +77,12 @@ export const styles = StyleSheet.create({
   oauthView: {
     width: "90%",
     borderBottomWidth: 1,
-    borderBottomColor: "#000",
+    borderBottomColor: "#5DB075",
     marginBottom: 20,
+  },
+  
+  image: {
+    width: 200,
+    height: 200    
   },
 });
